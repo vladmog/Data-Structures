@@ -1,6 +1,6 @@
 from doubly_linked_list import DoublyLinkedList
 import sys
-sys.path.append('../doubly_linked_list')
+# sys.path.append('../doubly_linked_list')
 
 class Stack:
     def __init__(self):
