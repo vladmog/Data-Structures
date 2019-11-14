@@ -57,7 +57,17 @@ class BinarySearchTree:
         # go left until you can't anymore, then
         # go back and go right
         # in here somewhere, you want to call cb(node)
-        pass
+        self.value = cb(self.value)
+        if self.left and self.right:
+            self.left = self.left.for_each(cb)
+            self.right = self.right.for_each(cb)
+
+        elif self.left:
+            self.left = self.left.for_each(cb)
+            
+        elif self.right:
+            self.right = self.right.for_each(cb)
+
 
     # DAY 2 Project -----------------------
 
