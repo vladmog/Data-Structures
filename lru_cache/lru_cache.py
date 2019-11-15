@@ -23,14 +23,12 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        # key present
         if key in self.storage:
             node = self.storage[key]
             self.order.move_to_end(node)
             return node.value[1]
         else:
             return None
-        # key not present
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -43,34 +41,18 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        #cases to handle
-
-        # does the key already exist in the cache?
         if key in self.storage:
-            #key is here so we should replace the value
             node = self.storage[key]
             node.value = (key, value)
             self.order.move_to_end(node)
             return
-        # yes - 
 
 
-        # no -
-        # are we at a cap or not?
-        # yes -
         if self.size == self.limit:
-            # Dump the oldest item
-            # delete the key value
             del self.storage[self.order.head.value[0]]
-            # remove from head
             self.order.remove_from_head()
-            # del self.storage[self.order.remove_from_head().value[0]]
-            # subtract from count
             self.size -= 1
-        # no -
         
-        # how do we put stuff into the cache
-        # if cache not full and key not present
         self.order.add_to_tail((key, value))
         self.storage[key] = self.order.tail
         self.size += 1
